@@ -1,0 +1,9 @@
+h1 {
+  width: 50%;
+  margin: 100px auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 90px;
+  border-radius: 16px;
+  color: #666;
+  /* font-size: 38px; */
+}
