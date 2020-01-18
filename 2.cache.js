@@ -16,18 +16,11 @@ http.createServer(async (req, res) => {
     }
     let content = await fs.readFile(absPath, 'utf8');
     let hash = crypto.createHash('md5').update(content).digest('base64');
-    /** 
-     * force cache
-     */
-    // res.setHeader('Expires', new Date(Date.now() + 10*1000).toGMTString());
-    res.setHeader('Expires',new Date(Date.now()+10*1000).toGMTString());
+    // 强制缓存
+    res.setHeader('Expires', new Date(Date.now() + 10*1000).toGMTString());
     // compatible with low-level browser
     res.setHeader('Cache-Control', 'max-age=10'); 
-    /** 
-     * 协商缓存
-     *    时间对比
-     *    内容对比
-    */
+    // 协商缓存
     let ctime = statObj.ctime.toGMTString();
     res.setHeader('Last-Modified', ctime);
     res.setHeader('ETag', hash);
@@ -46,8 +39,7 @@ http.createServer(async (req, res) => {
 
     res.end(content);
   } catch(e) {
+    res.statusCode = 404;
     res.end('Not Found');
   }
 }).listen(3000);
-
-console.log("主线程---------");
