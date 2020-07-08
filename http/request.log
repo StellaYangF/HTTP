@@ -1,0 +1,4 @@
+method=GET
+url=/
+headers={"host":"localhost:8080","connection":"close"}
+httpVersion=1.1
